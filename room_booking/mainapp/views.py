@@ -72,7 +72,6 @@ class BookRoom(BaseMixin, LoginRequiredMixin, FormView):
     def form_valid(self, form):
         if booked_room_date_is_correct(form.cleaned_data):
             form.save()
-            # ReservedRoom.objects.create(**form.cleaned_data)
             return redirect('main_page')
         else:
             return redirect(self.request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))

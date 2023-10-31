@@ -30,7 +30,3 @@ class TestMainapp(TestCase):
     def test_delete(self):
         response = self.client.get('/delete_booking/21')
         self.assertEqual(response.status_code, 302)
-
-
-
-

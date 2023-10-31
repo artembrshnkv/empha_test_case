@@ -1,7 +1,7 @@
 from django.contrib.auth.views import LoginView
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, DetailView, \
-                                 DeleteView, FormView
+    DeleteView, FormView
 from django.shortcuts import redirect, reverse
 from django.contrib.auth import logout
 from django import http
@@ -74,7 +74,10 @@ class BookRoom(BaseMixin, LoginRequiredMixin, FormView):
             form.save()
             return redirect('main_page')
         else:
-            return redirect(self.request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
+            return redirect(
+                self.request.META.get(
+                    'HTTP_REFERER',
+                    'redirect_if_referer_not_found'))
 
     def get_context_data(self, **kwargs):
         super_data = super().get_context_data(**kwargs)

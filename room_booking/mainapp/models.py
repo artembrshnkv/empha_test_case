@@ -21,9 +21,16 @@ class Room(models.Model):
 
 
 class ReservedRoom(models.Model):
-    number = models.ForeignKey(verbose_name='Номер', to=Room, on_delete=models.PROTECT)
-    user = models.ForeignKey(verbose_name='Человек', to=User, on_delete=models.PROTECT)
-    time_reservation = models.DateField(verbose_name='Дата брони', auto_now_add=True)
+    number = models.ForeignKey(
+        verbose_name='Номер',
+        to=Room,
+        on_delete=models.PROTECT)
+    user = models.ForeignKey(
+        verbose_name='Человек',
+        to=User,
+        on_delete=models.PROTECT)
+    time_reservation = models.DateField(
+        verbose_name='Дата брони', auto_now_add=True)
     start_reservation = models.DateField(verbose_name='Начало брони')
     end_reservation = models.DateField(verbose_name='Конец брони')
 

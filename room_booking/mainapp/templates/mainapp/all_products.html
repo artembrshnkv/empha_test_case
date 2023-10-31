@@ -1,0 +1,16 @@
+{% extends 'mainapp/base_list.html' %}
+    {% block content %}
+{% for room in rooms %}
+  <div class="list-group">
+  <a href="{{ room.get_absolute_url }}" class="list-group-item list-group-item-action flex-column align-items-start">
+    <div class="d-flex w-100 justify-content-between">
+      <small class="text-muted">Цена: {{ room.price }}</small>
+            <small class="text-muted">
+            </small>
+    </div>
+    <p class="mb-1">Комната номер: {{ room.number }}</p>
+    <small class="text-muted">Расчитана на {{ room.quantity }} человек</small>
+  </a>
+</div>
+{% endfor %}
+{% endblock content %}

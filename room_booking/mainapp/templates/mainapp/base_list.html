@@ -1,0 +1,45 @@
+{% extends 'mainapp/base.html' %}
+{% block dropdown_sort %}
+<div class="dropdown open">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Сортировка
+    </button>
+    <div class="dropdown-menu">
+        <h6 class="dropdown-header">Выберите способ сортировки</h6>
+        {% for m in sort_menu %}
+        <a class="dropdown-item" href="{{ m.url }}">{{ m.title }}</a>
+<!--        <a class="dropdown-item" href="#">Another action</a>-->
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock dropdown_sort %}
+{% block pagination %}
+{% if page_obj.has_other_pages %}
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li class="page-item">
+      <a class="page-link" href="?page=1" aria-label="Previous">
+        <span aria-hidden="true">В начало</span>
+        <span class="sr-only">Previous</span>
+      </a>
+    </li>
+      {% for p in paginator.page_range %}
+      {% if page_obj.number == p %}
+       <li class="page-item active">
+           <a class="page-link">{{ p }}<span class="sr-only">(current)</span></a>
+       </li>
+      {% else %}
+      <li class="page-item"><a class="page-link" href="?page={{ p }}">{{ p }}</a></li>
+      {% endif %}
+      {% endfor %}
+    <li class="page-item">
+      <a class="page-link" href="?page={{ paginator.num_pages }}" aria-label="Next">
+        <span aria-hidden="true">В конец</span>
+        <span class="sr-only">Next</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+{% endif %}
+{% endblock pagination %}

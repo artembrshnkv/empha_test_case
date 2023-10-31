@@ -11,7 +11,6 @@ class RoomAdmin(admin.ModelAdmin):
 
 @admin.register(ReservedRoom)
 class ReservedRoomAdmin(admin.ModelAdmin):
-    list_display = ['id', 'number_id', 'user_id', 'time_reservation', 'start_reservation', 'end_reservation']
+    list_display = ['id', 'number_id', 'user_id', 'time_reservation',
+                    'start_reservation', 'end_reservation']
     list_display_links = ['number_id']
-
-

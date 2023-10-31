@@ -10,7 +10,8 @@ class UserRegistrationForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ['username', 'first_name', 'last_name', 'email', 'password1', 'password2']
+        fields = ['username', 'first_name', 'last_name',
+                  'email', 'password1', 'password2']
 
 
 class BookRoomForm(forms.ModelForm):
@@ -41,4 +42,3 @@ class SortByDateForm(forms.Form):
             'start_reservation': DatePickerInput(),
             'end_reservation': DatePickerInput()
         }
-

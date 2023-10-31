@@ -1,4 +1,4 @@
-from django.urls import path, include
+from django.urls import path
 
 from .views import *
 
@@ -14,4 +14,3 @@ urlpatterns = [
     path('delete_booking/<int:pk>', DeleteBooking.as_view(), name='delete_booking'),
     # path('choose_date', SortByAvailableDates.as_view(), name='choose_date'),
 ]
-

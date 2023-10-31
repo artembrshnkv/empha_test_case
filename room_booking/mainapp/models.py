@@ -36,5 +36,3 @@ class ReservedRoom(models.Model):
     class Meta:
         verbose_name = 'Забронированная комната'
         verbose_name_plural = 'Забронированные комнаты'
-
-

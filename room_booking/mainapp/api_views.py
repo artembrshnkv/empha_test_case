@@ -1,4 +1,4 @@
-from rest_framework.viewsets import ReadOnlyModelViewSet, ModelViewSet
+from rest_framework.viewsets import ReadOnlyModelViewSet
 from rest_framework.permissions import IsAuthenticated
 
 from .serializers import RoomSerializer, ReservedRoomSerializer
@@ -16,5 +16,3 @@ class UserBookedRooms(ReadOnlyModelViewSet):
 
     def get_queryset(self):
         return ReservedRoom.objects.filter(user_id=self.request.user.pk)
-
-

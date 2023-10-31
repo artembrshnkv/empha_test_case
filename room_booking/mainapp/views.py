@@ -1,26 +1,21 @@
 from django.contrib.auth.views import LoginView
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView, TemplateView, DetailView, DeleteView, FormView
-from django.shortcuts import render, redirect, reverse
+from django.views.generic import ListView, CreateView, DetailView, \
+                                 DeleteView, FormView
+from django.shortcuts import redirect, reverse
 from django.contrib.auth import logout
 from django import http
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic.edit import FormMixin, ProcessFormView, TemplateResponseMixin
 
-from .models import Room, ReservedRoom
+from .models import Room
 from .utils import BaseMixin, BaseListMixin, booked_room_date_is_correct
 from .forms import *
-
-
-def main_page(request):
-    return render(request, 'mainapp/base.html')
 
 
 class RoomList(BaseListMixin, ListView):
     template_name = 'mainapp/all_products.html'
     queryset = Room.objects.all()
     context_object_name = 'rooms'
-
 
     def get_context_data(self, **kwargs):
         super_data = super().get_context_data()
@@ -74,10 +69,10 @@ class BookRoom(BaseMixin, LoginRequiredMixin, FormView):
 
         return data
 
-
     def form_valid(self, form):
         if booked_room_date_is_correct(form.cleaned_data):
             form.save()
+            # ReservedRoom.objects.create(**form.cleaned_data)
             return redirect('main_page')
         else:
             return redirect(self.request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
@@ -112,7 +107,7 @@ class BookRoom(BaseMixin, LoginRequiredMixin, FormView):
 #         super_data = super().get_context_data(**kwargs)
 #         c_def = self.get_general_data(**kwargs)
 #         context = dict(list(super_data.items()) + list(c_def.items()))
-# 
+#
 #         return context
 
 

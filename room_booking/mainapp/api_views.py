@@ -1,7 +1,6 @@
-from rest_framework.viewsets import ReadOnlyModelViewSet, ModelViewSet, GenericViewSet
+from rest_framework.viewsets import ReadOnlyModelViewSet, GenericViewSet
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import mixins
-
 
 from .serializers import RoomSerializer, ReservedRoomSerializer
 from .models import Room, ReservedRoom

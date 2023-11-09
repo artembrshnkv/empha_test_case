@@ -6,7 +6,7 @@ from django.urls import reverse
 class Room(models.Model):
     number = models.IntegerField(verbose_name='Номер', unique=True)
     slug = models.SlugField(unique=True, db_index=True)
-    price = models.IntegerField(verbose_name='Цена')
+    price = models.FloatField(verbose_name='Цена')
     quantity = models.IntegerField(verbose_name='Количество')
 
     def __str__(self):

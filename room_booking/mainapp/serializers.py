@@ -17,8 +17,7 @@ class ReservedRoomSerializer(serializers.ModelSerializer):
         model = ReservedRoom
 
     def save(self, **kwargs):
-        if booked_room_date_is_correct(self.validated_data):
-            ReservedRoom.objects.create(**self.validated_data)
+        ReservedRoom.objects.create(**self.validated_data)
 
     def destroy(self):
         ReservedRoom.objects.get(pk=self.validated_data['id']).delete()

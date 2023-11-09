@@ -1,29 +1,18 @@
 from rest_framework.viewsets import ReadOnlyModelViewSet, GenericViewSet
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import mixins
+from django_filters.rest_framework import DjangoFilterBackend
 
 from .serializers import RoomSerializer, ReservedRoomSerializer
 from .models import Room, ReservedRoom
+from .filters import RoomFilter, RoomAndReservedRoomFilterBackend
 
 
 class RoomViewSet(ReadOnlyModelViewSet):
     queryset = Room.objects.all()
     serializer_class = RoomSerializer
-
-    def get_queryset(self):
-        all_rooms = Room.objects.all()
-        if self.request.GET.get('min_price'):
-            queryset = all_rooms.order_by('price')
-        elif self.request.GET.get('max_price'):
-            queryset = all_rooms.order_by('-price')
-        elif self.request.GET.get('min_quantity'):
-            queryset = all_rooms.order_by('quantity')
-        elif self.request.GET.get('max_quantity'):
-            queryset = all_rooms.order_by('-quantity')
-        else:
-            queryset = all_rooms
-
-        return queryset
+    # filter_backends = [RoomAndReservedRoomFilterBackend]
+    filterset_class = RoomFilter
 
 
 class UserBookedRooms(mixins.RetrieveModelMixin,
